@@ -15,5 +15,6 @@
 <ins>Statement</ins>: Changing the button color from orange to pink will have no significant effect on the Click-Through Rate.<br>
 
 **The Rationale**:<br>
+<ins>Isolation of Variable</ins>: By changing only the color (and keeping the text, size, and position the same), we can confidently attribute any change in CTR specifically to the visual prominence of the color.
 
-
+<ins>Color Theory</ins>: Pink (specifically a vibrant magenta or hot pink) has a high "luminance contrast" against neutral or dark backgrounds, which reduces the cognitive load for a user trying to find the "next step."
