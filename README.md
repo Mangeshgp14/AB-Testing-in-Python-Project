@@ -18,3 +18,16 @@
 <ins>Isolation of Variable</ins>: By changing only the color (and keeping the text, size, and position the same), we can confidently attribute any change in CTR specifically to the visual prominence of the color.
 
 <ins>Color Theory</ins>: Pink (specifically a vibrant magenta or hot pink) has a high "luminance contrast" against neutral or dark backgrounds, which reduces the cognitive load for a user trying to find the "next step."
+
+## 3. Selecting the Metric
+
+The aim of the experiment is to test whethet the user is more likely to click the button due to colour change.
+So, the most direct measurement of the change is 'Click Through Rate (CTR)".
+
+**Primary Metric**: CTR <br>
+
+We want to ensure that pink doesn't just attract "accidental" clicks, but actually leads to more people completing the sign-up flow.
+
+**Secondary Metric**: Conversion Rate (Sign-ups) <br>
+
+**Guardrail Metric**:
