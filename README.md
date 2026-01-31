@@ -77,7 +77,7 @@ If you know any three, you can calculate the fourth:
   * *Standard: 0.80 (80% chance of detecting a real effect).*
 
 
-## ⚖️ Understanding Significance and Power: The Courtroom Analogy
+### ⚖️ Understanding Significance and Power: The Courtroom Analogy
 
 Imagine you are a judge. In every trial, there are two specific ways to reach the wrong verdict:
 
@@ -95,5 +95,54 @@ By doing so, we are saying:
 I am only willing to take a 5% risk of being wrong meaning I want to be 95% sure that the Pink button won because it's actually better, not because of random luck. <br>
 I want an 80% chance of catching a win if it exists. You accept a 20% risk that you might "miss" a real improvement because you didn't have enough data or time.
 
+### Let us now run a Power Analysis in python
 
+```python
+import statsmodels.stats.power as power
+import statsmodels.stats.proportion as proportion
 
+# --- STEP 1: DEFINE YOUR GOALS ---
+# This is the "Product" part of the code.
+
+baseline_ctr = 0.10   # We currently have a 10% Click-Through Rate
+mde = 0.02            # We want to detect a 2% lift (taking us to 12%)
+significance = 0.05   # We want to be 95% sure it's not luck
+desired_power = 0.80  # We want an 80% chance of catching the win
+
+# --- STEP 2: CALCULATE THE "EFFECT SIZE" ---
+# Math logic: Computers don't see "10% vs 12%". 
+# They see a "Distance" between two numbers called an Effect Size.
+
+target_ctr = baseline_ctr + mde
+eff_size = proportion.proportion_effectsize(baseline_ctr, target_ctr)
+
+# --- STEP 3: SOLVE FOR SAMPLE SIZE ---
+# This is the "Power Analysis" part.
+
+analysis = power.NormalIndPower()
+required_n = analysis.solve_power(
+    effect_size=eff_size, 
+    alpha=significance, 
+    power=desired_power, 
+    ratio=1.0  # Means we split traffic 50/50
+)
+
+# --- STEP 4: PRINT THE RESULT ---
+print(f"--- A/B TEST PLAN ---")
+print(f"To detect a {mde*100}% increase from a {baseline_ctr*100}% baseline:")
+print(f"You need {round(required_n)} users PER BUTTON color.")
+print(f"Total traffic needed: {round(required_n * 2)} users.")
+
+```
+
+**Result:**
+To detect a 2.0% increase from a 10.0% baseline:
+You need 3835 users PER BUTTON color.
+**Total traffic needed: 7669 users.**
+
+| Metric | Value | Notes |
+| :--- | :--- | :--- |
+| **Total Traffic Required** | 7669 users | Combined total for both variants. |
+| **Daily Traffic (Assumption)** | 1,000 users/day | Based on historical site volume. |
+| **Estimated Test Duration** | 8 days | Minimum time to reach sample size. |
+| **Recommended Duration** | **14 days** | Extended to cover 2 full business cycles. |
