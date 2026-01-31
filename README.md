@@ -97,6 +97,8 @@ I want an 80% chance of catching a win if it exists. You accept a 20% risk that 
 
 ### Let us now run a Power Analysis in python
 
+File Link : [A/B Testing in Python]([url](https://colab.research.google.com/drive/1B5iNeOBLEb_iyek3abjv3cFwO1kjcjQd?usp=sharing))
+
 ```python
 import statsmodels.stats.power as power
 import statsmodels.stats.proportion as proportion
