@@ -63,3 +63,37 @@ For our case, a 20% relative lift in CTR is a "healthy" win that is worth the ef
 **Target CTR**: 12%<br>
 
 ## 5. Power Analysis
+Power Analysis is a method to calculate the sample size required to detect the MDE with a given level of confidence (significance) and a given chance of success (power).
+
+Power analysis is a formula with four interconnected variables. 
+If you know any three, you can calculate the fourth:
+### The variables are: 
+* **Effect Size (MDE):** How big is the "win" you are looking for?
+  * *Example: A 2% lift in conversion.*
+* **Sample Size ($n$):** How many users will be included in the experiment?
+* **Significance ($\alpha$):** How strict is your evidence? 
+  * *Standard: 0.05 (5% chance of a False Positive).*
+* **Statistical Power ($1-\beta$):** How sensitive is your test? 
+  * *Standard: 0.80 (80% chance of detecting a real effect).*
+
+
+## ⚖️ Understanding Significance and Power: The Courtroom Analogy
+
+Imagine you are a judge. In every trial, there are two specific ways to reach the wrong verdict:
+
+| Error Type | Courtroom Scenario | Statistical Term |
+| :--- | :--- | :--- |
+| **False Positive** | Convicting an innocent person | **Type I Error ($\alpha$)** |
+| **False Negative** | Letting a guilty person go free | **Type II Error ($\beta$)** |
+
+In our case, a "False Positive" is when you think the Pink button is better, but it actually isn't — you just got lucky with the data.
+Similarly, a "False Negative" is when the Pink button is actually better, but your test was too weak to notice it.
+
+As per industry standard, we set the value of significance at 5% (0.05) and power at 80% (0.8).
+
+By doing so, we are saying:
+I am only willing to take a 5% risk of being wrong meaning I want to be 95% sure that the Pink button won because it's actually better, not because of random luck. <br>
+I want an 80% chance of catching a win if it exists. You accept a 20% risk that you might "miss" a real improvement because you didn't have enough data or time.
+
+
+
